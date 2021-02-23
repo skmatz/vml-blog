@@ -8,7 +8,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Home', page: '/' },
 ]
 
-const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
+const ogImageUrl = 'https://www.rs.tus.ac.jp/vml/images/icatch01.jpg'
 
 export default ({ titlePre = '' }) => {
   const { pathname } = useRouter()
@@ -19,11 +19,10 @@ export default ({ titlePre = '' }) => {
         <title>{titlePre ? `${titlePre} |` : ''} 谷口研究室</title>
         <meta
           name="description"
-          content="An example Next.js site using Notion for the blog"
+          content="東京理科大学工学部情報工学科谷口研究室のブログ"
         />
         <meta name="og:title" content="谷口研究室" />
         <meta property="og:image" content={ogImageUrl} />
-        <meta name="twitter:site" content="@_ijjk" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
