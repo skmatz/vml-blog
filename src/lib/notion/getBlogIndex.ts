@@ -49,22 +49,14 @@ export default async function getBlogIndex(previews = true) {
 
     if (previews) {
       await Promise.all(
-        postsKeys
-          .sort((a, b) => {
-            const postA = postsTable[a]
-            const postB = postsTable[b]
-            const timeA = postA.Date
-            const timeB = postB.Date
-            return Math.sign(timeB - timeA)
-          })
-          .map(async postKey => {
-            await sema.acquire()
-            const post = postsTable[postKey]
-            post.preview = post.id
-              ? await getPostPreview(postsTable[postKey].id)
-              : []
-            sema.release()
-          })
+        postsKeys.map(async postKey => {
+          await sema.acquire()
+          const post = postsTable[postKey]
+          post.preview = post.id
+            ? await getPostPreview(postsTable[postKey].id)
+            : []
+          sema.release()
+        })
       )
     }
 
