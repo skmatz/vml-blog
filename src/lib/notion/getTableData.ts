@@ -100,5 +100,16 @@ export default async function loadTable(collectionBlock: any, isPosts = false) {
       table.push(row)
     }
   }
-  return table
+  return sortTableByDate(table, true)
+}
+
+const sortTableByDate = (table: any, reverse: boolean = false) => {
+  return Object.entries(table)
+    .sort((a: any, b: any) => {
+      return reverse ? b[1].Date - a[1].Date : a[1].Date - b[1].Date
+    })
+    .reduce((result: any, current: any, currentIndex: number) => {
+      result[current[0]] = current[1]
+      return result
+    }, {})
 }
